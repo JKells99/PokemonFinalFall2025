@@ -1,5 +1,7 @@
 package com.pokemon.pokemon;
 
+import com.pokemon.trainer.Trainer;
+import com.pokemon.trainer.TrainerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,9 @@ public class PokemonService {
 
     @Autowired
     PokemonRepository pokemonRepository;
+
+    @Autowired
+    TrainerRepository trainerRepository;
 
     public Pokemon savePokemon(Pokemon pokemon){
          return pokemonRepository.save(pokemon);
@@ -37,5 +42,28 @@ public class PokemonService {
 
     public Iterable<Pokemon> getPokemonByHitPoints(int hitPoints) {
         return pokemonRepository.findPokemonByHitPoints(hitPoints);
+    }
+
+    public void addTrainerToPokemon(Long trainerId, Long pokemonId) {
+        Optional<Trainer> trainerOpt = trainerRepository.findById(trainerId);
+        Optional<Pokemon> pokemonOpt = pokemonRepository.findById(pokemonId);
+
+        try {
+            if(trainerOpt.isPresent() && pokemonOpt.isPresent()){
+                Pokemon pokemon = pokemonOpt.get();
+                Trainer trainer = trainerOpt.get();
+                pokemon.setTrainer(trainer);
+                pokemonRepository.save(pokemon);
+            }
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Trainer or Pokemon not found");
+        }
+
+
+    }
+
+    public Iterable<Pokemon> findPokemonByTrainerName(String trainerName) {
+        return pokemonRepository.findPokemonByTrainer_Name(trainerName);
     }
 }

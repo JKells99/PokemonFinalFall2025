@@ -13,4 +13,6 @@ public interface PokemonRepository extends JpaRepository<Pokemon, Long> {
     Iterable<Pokemon> findPokemonByType(String type, Sort sort);
 
     Iterable<Pokemon> findPokemonByHitPoints(int hitPoints);
+
+    Iterable<Pokemon> findPokemonByTrainer_Name(String trainerName);
 }

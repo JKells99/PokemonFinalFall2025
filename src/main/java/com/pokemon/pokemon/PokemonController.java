@@ -54,6 +54,18 @@ public class PokemonController {
     public Iterable<Pokemon> getPokemonByHitPoints(@RequestParam int hitPoints){
         return  pokemonService.getPokemonByHitPoints(hitPoints);
     }
+    @PostMapping("/addTrainerToPokemon/{trainerId}/{pokemonId}")
+    public String addTrainerToPokemon(@PathVariable Long trainerId, @PathVariable Long pokemonId){
+        pokemonService.addTrainerToPokemon(trainerId, pokemonId);
+
+        return "Pokemon added to trainer";
+    }
+
+    @GetMapping("/searchByTrainerName")
+    public Iterable<Pokemon> findPokemonByTrainerName(@RequestParam String trainerName){
+        return pokemonService.findPokemonByTrainerName(trainerName);
+    }
+
 
 //    @PutMapping("/{pokemonId}")
 //    public ResponseEntity<String> updatePokemon(@PathVariable Long pokemonId, @RequestBody Pokemon updatedPokemon){
