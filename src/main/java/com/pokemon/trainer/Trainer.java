@@ -19,7 +19,6 @@ import java.util.ArrayList;
 //
 //        ---
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Trainer {
@@ -31,6 +30,35 @@ public class Trainer {
     private String region;
     private int level;
 
+    public Long getTrainerId() {
+        return trainerId;
+    }
 
+    public void setTrainerId(Long trainerId) {
+        this.trainerId = trainerId;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 }

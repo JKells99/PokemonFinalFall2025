@@ -14,9 +14,9 @@ import lombok.*;
 //        | trainer | Trainer | FK reference to Trainer |
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Pokemon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +27,43 @@ public class Pokemon {
     @ManyToOne
     private Trainer trainer;
 
+    public Long getPokemonId() {
+        return pokemonId;
+    }
+
+    public void setPokemonId(Long pokemonId) {
+        this.pokemonId = pokemonId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getHitPoints() {
+        return hitPoints;
+    }
+
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
+    }
+
+    public Trainer getTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
 }
