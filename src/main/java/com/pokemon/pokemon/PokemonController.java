@@ -38,6 +38,23 @@ public class PokemonController {
          return  new ResponseEntity<String>(message, HttpStatus.OK);
     }
 
+    // Search Endpoints
+
+    @GetMapping("/searchByName")
+    public Iterable<Pokemon> getPokemonByName(@RequestParam String name){
+        return pokemonService.getPokemonByName(name);
+    }
+
+    @GetMapping("/searchByType")
+    public Iterable<Pokemon> getPokemonByType(@RequestParam (required = false) String type){
+        return pokemonService.getPokemonByType(type);
+    }
+
+    @GetMapping("/searchByHitPoints")
+    public Iterable<Pokemon> getPokemonByHitPoints(@RequestParam int hitPoints){
+        return  pokemonService.getPokemonByHitPoints(hitPoints);
+    }
+
 //    @PutMapping("/{pokemonId}")
 //    public ResponseEntity<String> updatePokemon(@PathVariable Long pokemonId, @RequestBody Pokemon updatedPokemon){
 //        Optional<Pokemon> existingPokemonOpt = pokemonService.getPokemonById(pokemonId);
