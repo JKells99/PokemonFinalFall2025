@@ -26,4 +26,16 @@ public class PokemonService {
     public void deletePokemonById(Long pokemonId) {
         pokemonRepository.deleteById(pokemonId);
     }
+
+    public Iterable<Pokemon> getPokemonByName(String name) {
+        return pokemonRepository.findPokemonByName(name);
+    }
+
+    public Iterable<Pokemon> getPokemonByType(String type) {
+        return pokemonRepository.findPokemonByType(type);
+    }
+
+    public Iterable<Pokemon> getPokemonByHitPoints(int hitPoints) {
+        return pokemonRepository.findPokemonByHitPoints(hitPoints);
+    }
 }
