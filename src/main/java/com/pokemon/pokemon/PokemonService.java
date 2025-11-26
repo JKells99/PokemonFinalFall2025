@@ -12,8 +12,7 @@ public class PokemonService {
     PokemonRepository pokemonRepository;
 
     public Pokemon savePokemon(Pokemon pokemon){
-        pokemonRepository.save(pokemon);
-        return pokemon;
+         return pokemonRepository.save(pokemon);
     }
 
     public Iterable<Pokemon> getAllPokemon() {

@@ -24,7 +24,6 @@ public class PokemonServiceTest {
     @Test
     void shouldCreatePokemonAndReturnSaved() {
         Pokemon input = new Pokemon();
-        input.setPokemonId(1L);
         input.setName("Pikachu");
         input.setType("Electric");
 
@@ -37,7 +36,6 @@ public class PokemonServiceTest {
 
 
         Pokemon result = pokemonService.savePokemon(input);
-
         assertNotNull(result);
         assertEquals(1L, result.getPokemonId());
         assertEquals("Pikachu", result.getName());
