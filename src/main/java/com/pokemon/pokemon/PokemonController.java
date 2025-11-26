@@ -38,21 +38,21 @@ public class PokemonController {
          return  new ResponseEntity<String>(message, HttpStatus.OK);
     }
 
-    @PutMapping("/{pokemonId}")
-    public ResponseEntity<String> updatePokemon(@PathVariable Long pokemonId, @RequestBody Pokemon updatedPokemon){
-        Optional<Pokemon> existingPokemonOpt = pokemonService.getPokemonById(pokemonId);
-        if(existingPokemonOpt.isPresent()){
-            Pokemon existingPokemon = existingPokemonOpt.get();
-            existingPokemon.setName(updatedPokemon.getName());
-            existingPokemon.setType(updatedPokemon.getType());
-            existingPokemon.setHitPoints(updatedPokemon.getHitPoints());
-            pokemonService.savePokemon(existingPokemon);
-            String message = "Pokemon with ID " + pokemonId + " updated successfully";
-            return new ResponseEntity<>(message, HttpStatus.OK);
-        } else {
-            String message = "Pokemon with ID " + pokemonId + " not found";
-            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
-        }
-    }
+//    @PutMapping("/{pokemonId}")
+//    public ResponseEntity<String> updatePokemon(@PathVariable Long pokemonId, @RequestBody Pokemon updatedPokemon){
+//        Optional<Pokemon> existingPokemonOpt = pokemonService.getPokemonById(pokemonId);
+//        if(existingPokemonOpt.isPresent()){
+//            Pokemon existingPokemon = existingPokemonOpt.get();
+//            existingPokemon.setName(updatedPokemon.getName());
+//            existingPokemon.setType(updatedPokemon.getType());
+//            existingPokemon.setHitPoints(updatedPokemon.getHitPoints());
+//            pokemonService.savePokemon(existingPokemon);
+//            String message = "Pokemon with ID " + pokemonId + " updated successfully";
+//            return new ResponseEntity<>(message, HttpStatus.OK);
+//        } else {
+//            String message = "Pokemon with ID " + pokemonId + " not found";
+//            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+//        }
+//    }
 }
 
