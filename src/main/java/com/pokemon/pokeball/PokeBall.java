@@ -14,12 +14,18 @@ public class PokeBall {
     private String type;
     private int quantity;
 
-    public PokeBall() {
+
+    public PokeBall(Long pokeBallId, String type, int quantity) {
+        this.pokeBallId = pokeBallId;
+        this.type = type;
+        this.quantity = quantity;
     }
 
     public PokeBall(String type, int quantity) {
         this.type = type;
         this.quantity = quantity;
+    }
+    public PokeBall() {
     }
 
     public int getQuantity() {
