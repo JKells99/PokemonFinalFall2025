@@ -30,6 +30,16 @@ public class Pokemon {
         this.hitPoints = hitPoints;
     }
 
+    public Pokemon() {
+    }
+
+    public Pokemon(String name, String type, int hitPoints, Trainer trainer) {
+        this.name = name;
+        this.type = type;
+        this.hitPoints = hitPoints;
+        this.trainer = trainer;
+    }
+
     /**
      * Primary key identifier for this Pokemon.
      *
