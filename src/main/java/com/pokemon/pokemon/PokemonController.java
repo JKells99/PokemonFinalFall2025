@@ -1,10 +1,13 @@
 package com.pokemon.pokemon;
 
+import com.pokemon.dto.PokemonDTO;
+import com.pokemon.dto.TrainerPokemonDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 //TODO: Return PROPER RESPONSES WITH RESPONSE ENTITY EVENTUALLY
 /**
@@ -40,7 +43,7 @@ public class PokemonController {
      * @return an iterable of all Pokemon
      */
     @GetMapping
-    public Iterable<Pokemon> getAllPokemon(){
+    public List<PokemonDTO> getAllPokemon(){
         return pokemonService.getAllPokemon();
     }
 
@@ -77,7 +80,7 @@ public class PokemonController {
      * @return matching Pokemon
      */
     @GetMapping("/searchByName")
-    public Iterable<Pokemon> getPokemonByName(@RequestParam String name){
+    public List<PokemonDTO> getPokemonByName(@RequestParam String name){
         return pokemonService.getPokemonByName(name);
     }
 
@@ -140,6 +143,10 @@ public class PokemonController {
     public ResponseEntity<Iterable<Pokemon>> searchPokemonWithMultipleParams(@RequestParam (required = false) String name,
                                                             @RequestParam (required = false )String type, @RequestParam (required = false )int hitPoints){
         return new ResponseEntity<>(pokemonService.searchPokemonByMultiParams(name, type, hitPoints), HttpStatus.OK);
+    }
 
+    @GetMapping("/getPokemonTrainerList")
+    public ResponseEntity<List<TrainerPokemonDTO>> getAllTrainersPokemon(){
+        return new ResponseEntity<>(pokemonService.getAllTrainersPokemon(), HttpStatus.OK);
     }
 }

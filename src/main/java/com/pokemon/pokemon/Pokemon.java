@@ -23,6 +23,13 @@ public class Pokemon {
     @ManyToOne
     private Trainer trainer;
 
+    public Pokemon(Long pokemonId, String name, String type, int hitPoints) {
+        this.pokemonId = pokemonId;
+        this.name = name;
+        this.type = type;
+        this.hitPoints = hitPoints;
+    }
+
     /**
      * Primary key identifier for this Pokemon.
      *

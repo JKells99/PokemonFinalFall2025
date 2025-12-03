@@ -1,12 +1,15 @@
 package com.pokemon.pokemon;
 
+import com.pokemon.dto.PokemonDTO;
+import com.pokemon.dto.TrainerPokemonDTO;
 import com.pokemon.trainer.Trainer;
 import com.pokemon.trainer.TrainerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Service layer containing business logic for Pokemon operations.
@@ -39,8 +42,20 @@ public class PokemonService {
      *
      * @return iterable of all Pokemon
      */
-    public Iterable<Pokemon> getAllPokemon() {
+
+    public Iterable<Pokemon> getAllPokemonIterable(){
         return pokemonRepository.findAll();
+    }
+    public List<PokemonDTO> getAllPokemon() {
+       List<Pokemon> allPokemon = pokemonRepository.findAll();
+       return  allPokemon.stream()
+                .map(pokemon -> new PokemonDTO(
+                        pokemon.getPokemonId(),
+                          pokemon.getName(),
+                          pokemon.getType(),
+                          pokemon.getHitPoints()
+                ))
+                .toList();
     }
 
     /**
@@ -68,8 +83,15 @@ public class PokemonService {
      * @param name the name to look up
      * @return matching Pokemon
      */
-    public Iterable<Pokemon> getPokemonByName(String name) {
-        return pokemonRepository.findPokemonByName(name);
+    public List<PokemonDTO> getPokemonByName(String name) {
+        List<Pokemon> allPokemonWithName =  pokemonRepository.findPokemonByName(name);
+        return allPokemonWithName.stream()
+                .map(pokemon -> new PokemonDTO(
+                        pokemon.getPokemonId(),
+                        pokemon.getName(),
+                        pokemon.getType(),
+                        pokemon.getHitPoints()
+                )).toList();
     }
 
     /**
@@ -155,5 +177,19 @@ public class PokemonService {
             return pokemonRepository.findAllByHitPointsAndNameAndTrainer_Name(hitPoints, name, type);
         }
 
+    }
+    public List<TrainerPokemonDTO> getAllTrainersPokemon() {
+        return pokemonRepository.findAll().stream()
+                .map(pokemon -> {
+                    String trainerName = (pokemon.getTrainer() != null)
+                            ? pokemon.getTrainer().getName()
+                            : "Unassigned";
+
+                    return new TrainerPokemonDTO(
+                            trainerName,
+                            pokemon.getName()
+                    );
+                })
+                .toList();
     }
 }

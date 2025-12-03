@@ -1,5 +1,6 @@
 package com.pokemon.trainer;
 
+import com.pokemon.pokeball.PokeBall;
 import com.pokemon.pokemon.Pokemon;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //
 //### 🧑‍🚀 Trainer
@@ -29,6 +31,17 @@ public class Trainer {
     private String name;
     private String region;
     private int level;
+
+    @ManyToMany
+    List<PokeBall> pokeBalls = new ArrayList<>();
+
+    public List<PokeBall> getPokeBalls() {
+        return pokeBalls;
+    }
+
+    public void setPokeBalls(List<PokeBall> pokeBalls) {
+        this.pokeBalls = pokeBalls;
+    }
 
     public Long getTrainerId() {
         return trainerId;
@@ -60,5 +73,11 @@ public class Trainer {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    // Method
+
+    public void addPokeBallToInventory(PokeBall pokeBall) {
+        this.pokeBalls.add(pokeBall);
     }
 }

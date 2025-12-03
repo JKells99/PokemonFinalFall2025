@@ -4,6 +4,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Spring Data JPA repository for Pokemon entities.
  *
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PokemonRepository extends JpaRepository<Pokemon, Long> {
     /** Find Pokemon with an exact name. */
-    Iterable<Pokemon> findPokemonByName(String name);
+    List<Pokemon> findPokemonByName(String name);
 
     /** Find Pokemon with an exact type. */
     Iterable<Pokemon> findPokemonByType(String type);
